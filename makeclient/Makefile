@@ -1,16 +1,16 @@
-NAME = server
-SRC_NAME = server.c
+NAME = client
+SRC_NAME = client.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
-	OBJ_PATH = obj/
-	SRC_PATH = src/server/
+	OBJ_PATH = ../obj/
+	SRC_PATH = ../src/client/
 	SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 	OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
-	SRCI = libft/libft.h
+	SRCI = ../libft/libft.h
 	FLAG = -Wall -Wextra -Werror
-	LIB = libft/libft.a
+	LIB = ../libft/libft.a
 
 $(NAME) : $(OBJ)
-	make -C ./libft
+	make -C .././libft
 	gcc $(FLAG) $^ $(LIB) -o $@
 
 all : $(NAME)
@@ -26,7 +26,7 @@ clean :
 
 fclean : clean
 	rm -f $(NAME)
-	make fclean -C ./libft
+	make fclean -C .././libft
 
 re : fclean all
 
