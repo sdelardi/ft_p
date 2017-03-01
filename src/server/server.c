@@ -6,7 +6,7 @@
 /*   By: sdelardi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 21:47:46 by sdelardi          #+#    #+#             */
-/*   Updated: 2017/03/01 21:47:50 by sdelardi         ###   ########.fr       */
+/*   Updated: 2017/03/01 23:46:29 by sdelardi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,28 @@
 #include <unistd.h>
 #include <netdb.h>
 #include <arpa/inet.h>
+#include "../../libft/libft.h"
+
+void	commands(char *cmd)
+{
+	char	**cmds;
+
+	cmds = ft_strsplit(cmd, ' ');
+	if (ft_strcmp(cmds[0], "ls") == 0 && !cmds[1])
+		printf("SUCCESS\nLS\n");
+	else if (ft_strcmp(cmds[0], "cd") == 0)
+		printf("SUCCESS\ncd\n");
+	else if (ft_strcmp(cmds[0], "get") == 0)
+		printf("SUCCESS\nget\n");
+	else if (ft_strcmp(cmds[0], "put") == 0)
+		printf("SUCCESS\nput\n");
+	else if (ft_strcmp(cmds[0], "pwd") == 0 && !cmds[1])
+		printf("SUCCESS\npwd\n");
+	else if (ft_strcmp(cmds[0], "quit") == 0 && !cmds[1])
+		printf("SUCCESS\nquit\n");
+	else
+		printf("ERROR\n");
+}
 
 int		create_server(int port)
 {
@@ -61,6 +83,7 @@ int		main(int argc, char **argv)
 	{
 		buf[r] = '\0';
 		printf("received %d bytes: [%s]\n", r, buf);
+		commands(buf);
 	}
 	close(cs);
 	close(sock);
